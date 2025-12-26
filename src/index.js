@@ -65,7 +65,7 @@ const Lightense = () => {
   }
 
   function track(element) {
-    if (element.src && !element.classList.contains('lightense-target')) {
+    if (element.currentSrc && !element.classList.contains('lightense-target')) {
       element.classList.add('lightense-target');
       element.addEventListener(
         'click',
@@ -74,7 +74,7 @@ const Lightense = () => {
             // If Command (macOS) or Ctrl (Windows) key pressed, stop processing
             // and open the image in a new tab
             if (event.metaKey || event.ctrlKey) {
-              return window.open(element.src, '_blank');
+              return window.open(element.currentSrc, '_blank');
             }
           }
 
@@ -351,7 +351,7 @@ const Lightense = () => {
       bindEvents();
     };
 
-    img.src = config.target.src;
+    img.src = config.target.currentSrc;
   }
 
   function bindEvents() {
