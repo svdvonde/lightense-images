@@ -92,7 +92,7 @@ var Lightense = function Lightense() {
   }
 
   function track(element) {
-    if (element.currentSrc && !element.classList.contains('lightense-target')) {
+    if (element.src && !element.classList.contains('lightense-target')) {
       element.classList.add('lightense-target');
       element.addEventListener('click', function (event) {
         if (config.keyboard) {
