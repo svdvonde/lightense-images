@@ -258,16 +258,24 @@ var Lightense = function Lightense() {
     config.scrollY = window.scrollY;
     once(config.target, 'transitionend', function () {
       invokeCustomHook('afterShow');
-    });
-    var img = new Image();
+    }); // clone the original img element to prevent a network call.
 
-    img.onload = function () {
-      createTransform(this);
-      createViewer();
-      bindEvents();
-    };
+    var img = config.target.cloneNode();
 
-    img.src = config.target.currentSrc;
+    if (img.id) {
+      // when config.target had an id, make sure to delete the id of the cloned node
+      // otherwise this may cause weirdness in the client application
+      // when two html elements with the same id exist.
+      Reflect.deleteProperty(img, 'id');
+    } // set the width and height of img, which is equivalent to initialising a new Image element
+    // and setting its 'src' property.
+
+
+    img.width = config.target.naturalWidth;
+    img.height = config.target.naturalHeight;
+    createTransform(img);
+    createViewer();
+    bindEvents();
   }
 
   function bindEvents() {

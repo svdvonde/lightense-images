@@ -344,14 +344,22 @@ const Lightense = () => {
       invokeCustomHook('afterShow');
     });
 
-    var img = new Image();
-    img.onload = function() {
-      createTransform(this);
-      createViewer();
-      bindEvents();
-    };
+    // clone the original img element to prevent a network call.
+    var img = config.target.cloneNode();
+    if (img.id) {
+      // when config.target had an id, make sure to delete the id of the cloned node
+      // otherwise this may cause weirdness in the client application
+      // when two html elements with the same id exist.
+      Reflect.deleteProperty(img, 'id');
+    }
+    // set the width and height of img, which is equivalent to initialising a new Image element
+    // and setting its 'src' property.
+    img.width = config.target.naturalWidth;
+    img.height = config.target.naturalHeight;
 
-    img.src = config.target.currentSrc;
+    createTransform(img);
+    createViewer();
+    bindEvents();
   }
 
   function bindEvents() {
