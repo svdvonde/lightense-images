@@ -42,10 +42,8 @@ const Lightense = () => {
     switch (typeof elements) {
       case 'undefined':
         throw 'You need to pass an element!';
-
       case 'string':
-        return document.querySelectorAll(elements);
-
+        return Array.from(document.querySelectorAll(elements)).filter((el) => !el.closest('.no-lightense'));
       case 'object':
         return elements;
     }

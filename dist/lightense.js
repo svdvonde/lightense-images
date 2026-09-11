@@ -8,12 +8,12 @@
 		exports["Lightense"] = factory();
 	else
 		root["Lightense"] = factory();
-})(this, function() {
+})(this, () => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 352:
-/***/ ((module) => {
+/***/ 954
+(module) {
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -70,7 +70,9 @@ var Lightense = function Lightense() {
         throw 'You need to pass an element!';
 
       case 'string':
-        return document.querySelectorAll(elements);
+        return Array.from(document.querySelectorAll(elements)).filter(function (el) {
+          return !el.closest('.no-lightense');
+        });
 
       case 'object':
         return elements;
@@ -319,22 +321,22 @@ var Lightense = function Lightense() {
 var singleton = Lightense();
 module.exports = singleton;
 
-/***/ })
+/***/ }
 
 /******/ 	});
 /************************************************************************/
 /******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
+/******/ 	const __webpack_module_cache__ = {};
 /******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		const cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 		const module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
@@ -352,7 +354,7 @@ module.exports = singleton;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(352);
+/******/ 	let __webpack_exports__ = __webpack_require__(954);
 /******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()

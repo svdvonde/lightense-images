@@ -38,7 +38,7 @@
     "husky": "^8.0.0",
     "release-it": "^15.0.0",
     "terser-webpack-plugin": "^5.1.4",
-    "webpack": "^5.41.1",
+    "webpack": "^5.110.3",
     "webpack-cli": "^4.7.2"
   },
   "release-it": {
@@ -53,5 +53,6 @@
     "github": {
       "release": true
     }
-  }
+  },
+  "dependencies": {}
 }
